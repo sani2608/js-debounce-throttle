@@ -121,3 +121,58 @@ const debounce1 = function (fn, d) {
  */
 const searchProducts = debounce1(getData, 300);
 
+
+
+// throttle
+/** without arguments */
+const expensive = () => {
+  console.log('expensive call');
+}
+
+const throttleFunc = (func, limit) => {
+  let flag = true;
+  return function () {
+    if (flag) {
+      func();
+      flag = false;
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  }
+}
+const betterExpensiveFunc = throttleFunc(expensive, 1000);
+
+// window.addEventListener('resize', expensive);
+// window.addEventListener('resize', betterExpensiveFunc);
+
+
+/** With arguments */
+const expensiveWithArgs = (name) => {
+  console.log('expensive call with', name);
+}
+
+const throttleFuncWithArgs = (func, limit) => {
+  let flag = true;
+  return function () {
+    let context = this;
+    let args = arguments;
+    if (flag) {
+      func.apply(context, args);
+      flag = false;
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  }
+}
+
+const betterExpensiveFuncWithArgs = throttleFuncWithArgs(expensiveWithArgs, 1000);
+window.addEventListener('resize', () => {
+  betterExpensiveFuncWithArgs('sani in args');
+});
+
+
+
+
+
