@@ -9,7 +9,7 @@ const throttleText = document.getElementById("throttle");
  * @param {*} delay is the time after which the callback function will run.
  * @returns new function
  */
- const debounce = (callback, delay = 1000) => {
+const debounce = (callback, delay) => {
   let timer;
   return (...args) => {
     clearTimeout(timer);
@@ -29,7 +29,7 @@ input.addEventListener("input", (event) => {
 
 const updateDebounceText = debounce((text) => {
   debounceText.textContent = text;
-});
+}, 1000);
 
 const updateThrottleText = throttle((text) => {
   throttleText.textContent = text;
@@ -65,8 +65,9 @@ function throttle(callback, delay = 1000) {
   };
 }
 
+const parentContainer = document.querySelector('#child2');
 
-document.addEventListener("mousemove", () => {
+parentContainer.addEventListener("mousemove", () => {
   incrementCount(defaultText);
   updateDebounceTextMouseMove();
   updateThrottleTextMouseMove();
@@ -78,8 +79,11 @@ function incrementCount(element) {
 
 const updateDebounceTextMouseMove = debounce(() => {
   incrementCount(debounceText); //mouseover function
-});
+}, 500);
 
-const updateThrottleTextMouseMove = throttle(() => {
+const updateThrottleTextMouseMove = throttle(() => {  
   incrementCount(throttleText); //mouseover function
 });
+
+
+
