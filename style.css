@@ -2,7 +2,7 @@ body {
     background-color: rgb(219, 226, 228);
 }
 
-#input {
+.input-css {
     width: 300px;
     height: 30px;
     margin-bottom: 10px;
@@ -36,7 +36,7 @@ body {
     font-size: 28px;
     border: 1px solid black;
     width: 90%;
-    height: 250px;
+    height: 100vh;
     border-radius: 25px;
     box-shadow: 0 8px 16px 0 rgba(70, 67, 67, 0.2);
 }

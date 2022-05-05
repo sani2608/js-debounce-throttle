@@ -87,3 +87,37 @@ const updateThrottleTextMouseMove = throttle(() => {
 
 
 
+
+// passing only function name to the debounce functoin.
+
+
+let counter = 0;
+const getData = () => {
+  // calls an API and gets Data
+  const input = document.getElementById('second-input');
+  const div = document.getElementById('fetching');
+  if (input.value) {
+    div.innerHTML += `<span>Fetching Data.. ${counter++}</span><br>`;
+  } else {
+    div.innerHTML = "";
+  }
+
+}
+
+const debounce1 = function (fn, d) {
+  let timer;
+  return function () {
+    let context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, d);
+  }
+}
+
+/**
+ * passing function name and timer to debounce
+ */
+const searchProducts = debounce1(getData, 300);
+
