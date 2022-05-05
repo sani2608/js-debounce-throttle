@@ -66,3 +66,20 @@ function throttle(callback, delay = 1000) {
 }
 
 
+document.addEventListener("mousemove", () => {
+  incrementCount(defaultText);
+  updateDebounceTextMouseMove();
+  updateThrottleTextMouseMove();
+});
+
+function incrementCount(element) {
+  element.textContent = (parseInt(element.innerText) || 0) + 1;
+}
+
+const updateDebounceTextMouseMove = debounce(() => {
+  incrementCount(debounceText); //mouseover function
+});
+
+const updateThrottleTextMouseMove = throttle(() => {
+  incrementCount(throttleText); //mouseover function
+});
